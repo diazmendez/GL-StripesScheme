@@ -1,0 +1,139 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      3421,         99]*)
+(*NotebookOutlinePosition[      4053,        121]*)
+(*  CellTagsIndexPosition[      4009,        117]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \( (*\ 
+      Programita\ que\ genera\ la\ Jk\ y\ la\ manda\ a\ un\ fichero\ que\ lee\
+\ el\  . c\ *) \)], "Input"],
+
+Cell[BoxData[{
+    \(\(alfa = 1/25;\)\), "\[IndentingNewLine]", 
+    \(\(delta = \((1 - Pi*alfa)\)/2;\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(a[m_] := 1/m\), "\n", 
+    \(k[i_, j_, mn_] := 
+      N[\@\(\((2*Pi*i\/mn)\)\^2 + \((2*Pi*j\/mn)\)\^2\)]\), "\
+\[IndentingNewLine]", 
+    \(f[i_, j_, m_, n_] := 
+      2  Pi*\((\(-k[i, j, m*n]\) + 
+            a[m]\/alfa*
+              N[HypergeometricPFQ[{\(-\(1\/2\)\)}, {1\/2, 
+                    1}, \(-\(\(k[i, j, m*n]\^2\ alfa\^2\)\/\(4*
+                          a[m]\^2\)\)\)]])\)\), "\[IndentingNewLine]", 
+    \(Jk[m_, n_] := 
+      Table[f[i, j, m, n], {i, \(-\((\(m*n\)\/2 - 1)\)\), \(m*n\)\/2, 
+          1}, {j, \(-\((\(m*n\)\/2 - 1)\)\), \(m*n\)\/2, 
+          1}]\), "\[IndentingNewLine]", 
+    \(dist[i_, m_, 
+        n_] := \((i + m*n/2 - 1)\)*
+          UnitStep[\((\(m*n\)\/2 + 1)\) - i] + \((i - m*n/2 - 1)\)*
+          UnitStep[i - \((\(m*n\)\/2 + 2)\)]\)}], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\( (*\ ejemplo\ de\ m = 35, \ 
+      n = 10\ *) \)\(\[IndentingNewLine]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(Jkm35n10 = Jk[35, 10];\)\)], "Input"],
+
+Cell[BoxData[{
+    \(\(m = 35;\)\), "\[IndentingNewLine]", 
+    \(\(n = 10;\)\), "\[IndentingNewLine]", 
+    \(\(Jke = 
+        Table[Jkm35n10[\([dist[i, m, n], dist[j, m, n]]\)], {i, 1, m*n}, {j, 
+            1, m*n/2 + 1}];\)\), "\[IndentingNewLine]", 
+    \(Clear[m, n]\)}], "Input"],
+
+Cell[BoxData[
+    \(Export["\</home/rogelio/Desktop/Jkm35n10.dat\>", 
+      Jke, "\<Table\>"]\)], "Input"]
+},
+FrontEndVersion->"5.2 for X",
+ScreenRectangle->{{0, 1400}, {0, 1050}},
+WindowSize->{1330, 600},
+WindowMargins->{{Automatic, 25}, {189, Automatic}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1754, 51, 133, 3, 32, "Input"],
+Cell[1890, 56, 117, 2, 55, "Input"],
+Cell[2010, 60, 811, 18, 295, "Input"],
+Cell[2824, 80, 133, 2, 78, "Input"],
+Cell[2960, 84, 59, 1, 32, "Input"],
+Cell[3022, 87, 286, 6, 101, "Input"],
+Cell[3311, 95, 106, 2, 32, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+
